@@ -1,0 +1,16 @@
+一。导入依赖的工具类
+       DBUTIL
+       SqlSession
+
+二。导入mysql驱动包
+
+       1.WEB-INF下创建一个【lib文件】
+       2.将mysql驱动包复制到lib
+
+三。创建Dept实体类   com.bjpowernode.model.Dept
+
+四。创建DeptDao      com.bjpowernode.dao.DeptDao
+
+
+五。创建Servlet      com.bjpowernode.contoller.DeptFindServlet
+

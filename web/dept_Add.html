@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+         function fun1(){
+
+             //1.创建一个异步请求对象
+             var xmlHttp = new XMLHttpRequest();
+             //2.为异步请求对象身上绑定【工作状态监听器】
+             xmlHttp.onreadystatechange = function(){
+
+                 if(xmlHttp.readyState==4 && xmlHttp.status==200){
+                    var data = xmlHttp.responseText;
+                    alert("得到的数据 "+data);
+                     callBack(data);
+                 }
+             };
+             //3.初始化异步请求对象
+             var param = document.getElementById("dname").value;
+             xmlHttp.open("get","/myWeb/dept/check.do?dname="+param,true);
+             //4.通知异步请求对象代替浏览器发送请求协议包
+              xmlHttp.send();
+
+         }
+
+
+         //局部刷新函数
+         function callBack(param){
+             if(param==0){
+                 document.getElementById("myFont").innerText='部门名称可以使用';
+             }else{
+
+                 document.getElementById("myFont").innerText='部门名称被占用';
+             }
+         }
+
+    </script>
+</head>
+<body>
+
+              <center>
+                  <form action="/myWeb/dept/add.do" method="post">
+
+                      部门编号:<input type="text" name="deptNo"><br/>
+                      部门名称:<input  id="dname" type="text" name="dname" onblur="fun1()">
+                      <font color="red" id="myFont">*</font>
+                             <br/>
+                      部门位置:<input type="text" name="loc"><br/>
+                      <input type="submit" value="添加部门"><br/>
+                  </form>
+
+              </center>
+</body>
+</html>
